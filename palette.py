@@ -17,21 +17,21 @@ pic = cv2.imread(filepath)
 
 if file_exists:
 	cv2.imread(filepath)
-	
+
 # print information about the file
-	print('Type of the image : ',type(pic))
-	print('Shape of the image : {}'.format(pic.shape))
-	print('Height of the image {}'.format(pic.shape[0]))
-	print('Width of the image {}'.format(pic.shape[1]))
-	print('Dimension of the image {}\n'.format(pic.ndim)) 
+	print('Type of the image: ',type(pic))
+	print('Shape of the image: {}'.format(pic.shape))
+	print('Height of the image: {}'.format(pic.shape[0]))
+	print('Width of the image: {}'.format(pic.shape[1]))
+	print('Dimension of the image: {}\n'.format(pic.ndim)) 
 
 	print('Image size {}'.format(pic.size))
 	print('Maximum RGB value in this image {}'.format(pic.max()))
 	print('Minimum RGB value in this image {}\n'.format(pic.min())) 
 
-	print('Value of only R channel {}'.format(pic[150, 100, 0]))
-	print('Value of only G channel {}'.format(pic[150, 100, 1]))
-	print('Value of only B channel {}'.format(pic[150, 100, 2])) 
+	print('Value of only R channel {}'.format(pic[100, 150, 2]))
+	print('Value of only G channel {}'.format(pic[100, 150, 1]))
+	print('Value of only B channel {}'.format(pic[100, 150, 0])) 
 
 # plot the red green and blue channels
 	for i, subplot in zip(range(3), plots):
