@@ -36,9 +36,15 @@ if file_exists:
 	# create dataframe of rgb values
 	df_rgb = pd.DataFrame(rgb_data)
 
-	# convert rgb values to hexadecimal, and append them to the dataframe
+	# convert rgb values to hexadecimal, and append them to the dataframe (as new df, df_hex) 
 	df_hex = df_rgb.assign(
 	hex=df_rgb.astype(int).apply(lambda r: cm.rgb2hex(*r), axis=1))
+	# eliminate hex values that only appear once from the dataframe
+	df_hex = df_hex[df_hex.duplicated(['hex'])]
+	# eliminate the R G B values from the dataframe, leaving only recurring hexes
+	df_hex = df_hex.drop(['R', 'G', 'B'], axis=1)
+	# temporary prints, to check results
+	df_hex.to_csv('lily.csv')
 	print(df_hex)
 
 # if the image filepath provided didn't point to an image, end with msg	
