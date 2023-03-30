@@ -3,7 +3,7 @@ import pandas as pd
 
 """
 extract_rgb() returns dictionary of all 
-rgb values in an image per pixel, given ndarray of rgb values
+rgb values in an image by pixel, given ndarray of rgb values
 """
 def extract_rgb(image_as_ndarray):
 	i = 0 
@@ -23,15 +23,7 @@ def extract_rgb(image_as_ndarray):
 	
 """
 rgb2hex() converts rgb values to hexadecimal values, given RGB input
+(three int values)
 """
 def rgb2hex(red, green, blue):
 	return '#%02x%02x%02x' % (red, green, blue)
-	
-"""
-hex_byoccur() returns a dataframe of hex values, ordered by values that
-occur most often to least often, with counts
-"""
-def hex_byoccur(df):
-	df = pd.DataFrame.value_counts(ascending=False)
-	return df
-	
