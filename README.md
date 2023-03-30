@@ -25,16 +25,16 @@ These libraries can be installed by running the following commands:
 
 ## Primary Features:
 
-* Reading Image Color Data
+Reading Image Color Data
 - Reads RGB values from digital image files into an array (ndarray).
 
-* Cleaning and Manipulating Image Color Data
+Cleaning and Manipulating Image Color Data
 - Creates a pandas dataframe of this data by extracting it from an ndarray and putting it into R, G, and B columns. Each row of this dataframe contains one pixel's color values. This dataframe is then converted to hexadecimal. The hexadecimal is added as an additional column, preserving the R G B values, and creating a master dataframe of all useful color data pixel by pixel. 
 
-* Sorting Image Data by Occurence
+Sorting Image Data by Occurence
 - This dataframe is then sorted into a pandas series, with the values that occur more often than others at the top and the values that occur least often at the bottom. This sort is further narrowed to the ten most often occuring hex values.
 
-* Visualizing the Occurence of Certain Colors
+Visualizing the Occurence of Certain Colors
 - The ten most often occuring hex values are then plotted to a pie chart, and displayed to the user. 
 
 Often one color, such as #ffffff (white), will dominate an image. Other shades of this color may also occur disproportionately to those that make up the image's subject. It can be useful to know if certain hex value should be filtered out of an image, or another made to stand out in relation to it, when manipulating an image with other software.      
