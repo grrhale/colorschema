@@ -7,7 +7,7 @@ A sample image file 'lily.jpg' is included in this github repository. When runni
 1) Open your terminal/CMD
 2) Navigate to the directory palette.py and associated files are located in.
 3) Type 'python3 palette.py'
-4) You will be prompted to provide a filepath, ie: 'C:\Users\user\git\palette-main\lily.jpg. If you run pa
+4) You will be prompted to provide a filepath, ie: 'C:\Users\user\git\palette-main\lily.jpg. Simply type 'lily.jpg' if you run palette in the same folder you pull from here, as it is included as a sample image. It contains a surprising amount of white and shades of white.
 5) Wait a moment as the image is analyzed. A pie chart will be displayed that shows which hexadecimal colors appear most often, in relation to each other.
  
 ## Requirements:
