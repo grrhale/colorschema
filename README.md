@@ -41,7 +41,7 @@ Visualizing the Occurence of Certain Colors
 
 Often one color, such as #ffffff (white), will dominate an image. Other shades of this color may also occur disproportionately to those that make up the image's subject. It can be useful to know if certain hex value should be filtered out of an image, or another made to stand out in relation to it, when manipulating an image with other software.      
 
-### CODE LOUISVILLE DISCLAIMER
+### CODE LOUISVILLE NOTE
 
 In my project plan, I set out to create a program that generates a color palette from the colors present in an image. Palette visualizes the colors which are most common in an image, but this does not result in a true color palette. This data is still useful however in certain photo editing scenarios.
 
