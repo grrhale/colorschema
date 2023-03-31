@@ -3,7 +3,7 @@ import pandas as pd
 
 """
 extract_rgb() returns dictionary of all 
-rgb values in an image by pixel, given ndarray of rgb values
+rgb values in an image by pixel, given an ndarray of rgb values
 """
 def extract_rgb(image_as_ndarray):
 	i = 0 
