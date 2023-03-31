@@ -2,7 +2,9 @@
 
 Palette breaks down the colors that comprise a digital image and provides a visualization of the colors that appear in that image most often. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing software such as Photoshop. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are converted to hexadecimal, and the ten most commonly occuring colors are graphed in a pie chart.
 
-A sample image file 'lily.jpg' is included in this github repository. When running palette, you will be prompted for a filepath. An example use case is as follows:
+A sample image file 'lily.jpg' is included in this github repository. When runnin palette, you will be prompted for a filepath. You may provide a filepath to any image file on your machine (.jpg, .png, etc.) 
+
+An example use case is as follows:
 
 1) Open your terminal/CMD
 2) Navigate to the directory palette.py and associated files are located in.
@@ -13,7 +15,7 @@ A sample image file 'lily.jpg' is included in this github repository. When runni
 ## Requirements:
 
 This program utilizes pandas for data manipulation, opencv to read image data,
-and matplotlib to generate a visualized output.
+and matplotlib to generate a visualized output. These need to be installed for the program to work.
 
 These libraries can be installed by running the following commands:
 
@@ -39,5 +41,7 @@ Visualizing the Occurence of Certain Colors
 
 Often one color, such as #ffffff (white), will dominate an image. Other shades of this color may also occur disproportionately to those that make up the image's subject. It can be useful to know if certain hex value should be filtered out of an image, or another made to stand out in relation to it, when manipulating an image with other software.      
 
+### CODE LOUISVILLE DISCLAIMER
 
+In my project plan, I set out to create a program that generates a color palette from the colors present in an image. Palette visualizes the colors which are most common in an image, but this does not result in a true color palette. This data is still useful however in certain photo editing scenarios.
 
