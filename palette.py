@@ -2,6 +2,7 @@ import cv2
 import matplotlib.pyplot as plt
 import os.path
 import pandas as pd
+import numpy as np
 import color_module as clr_m
 
 # ask user for file
@@ -40,21 +41,26 @@ if file_exists:
 	"""
 	Visualizing the data
 	"""
-	# Create pie chart of the ten hexadecimal colors that appear the
-	# most in the image file provided.
-	palette=srs_hex_byoccur.iloc[0:9] # Grab a series of ten most often occuring colors with iloc
+	# Create pie chart of a color palette
 	
-	p_c=list(palette.to_dict().keys()) # Convert series to dictionary, but keys only (leaving only hex values)
-	colors=[x[:1] for x in p_c] # Define colors, flattening dict to list
-	colors=[list(x) for x in colors] # Collapse list from list of lists that contain single hex values, to list of hex values
-	final_plot_colors=[x for colors in colors for x in colors] 
-	
+	df_10color_sample = np.array_split(srs_hex_byoccur, 10) # split the hex series into 10 equal parts
+	df_sampled = pd.DataFrame({'hex': df_10color_sample[0].index[0]}) # define a dataframe to be populated with our palette
+	for i in range(1, 10): # populate the dataframe
+		df_sampled.loc[i] = df_10color_sample[i].index[0] # populating with first color in each equal part
 		
-	palette.plot.pie(colors=final_plot_colors) # Plot pie chart of colors
-	title_piechart='Hexadecimal colors which occur most often in ' + filepath
-	plt.ylabel(None)
-	plt.title(label=title_piechart)
-	plt.show()
+	false_y=[5,5,5,5,5,5,5,5,5,5] # create false y axis to append to dataframe (to allow matplotlib to plot the palette as a pie chart)
+	df_sampled['false_y']=false_y # append the false y data to the sampled dataframe
+	
+	df_sampled=df_sampled.set_index('hex') # set hex codes as index of the sampled dataframe
+
+	
+	colors=df_sampled.index.tolist() # Define colors, flattening df to list
+	
+	df_sampled.plot(kind='pie', y='false_y', colors=colors, legend=None) # plot the palette as an arbitrarily sized pie chart
+	title_piechart='Palette from colors in ' + filepath # define the title for the palette chart
+	plt.ylabel(None) # disable labeling of the ys, false data
+	plt.title(label=title_piechart) # tell matplotlib to use our defined title
+	plt.show() # plot the palette
 
 # if the image filepath provided didn't point to an image, end with msg	
 else: 
