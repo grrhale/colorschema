@@ -15,7 +15,7 @@ An example use case is as follows:
 ## Requirements:
 
 This program utilizes pandas for data manipulation, opencv to read image data,
-and matplotlib to generate a visualized output. These need to be installed for the program to work.
+and matplotlib to generate a visual output. These need to be installed for the program to work.
 
 These libraries can be installed by running the following commands:
 
