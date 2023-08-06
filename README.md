@@ -34,16 +34,9 @@ Cleaning and Manipulating Image Color Data
 - Creates a pandas dataframe of this data by extracting it from an ndarray and putting it into R, G, and B columns. Each row of this dataframe contains one pixel's color values. This dataframe is then converted to hexadecimal. The hexadecimal is added as an additional column, preserving the R G B values, and creating a master dataframe of all useful color data pixel by pixel. 
 
 Sorting Image Data by Occurence
-- This dataframe is then sorted into a pandas series, with the values that occur more often than others at the top and the values that occur least often at the bottom. This sort is further narrowed to the ten most often occuring hex values.
-
+- This dataframe is then sorted into a pandas series, with the values that occur more often than others at the top and the values that occur least often at the bottom. This sort is then broken up into 10 equally sized sections for sampling. From these sections, the most often occuring color in each is selected and included in the palette. This is a primitive sampling method but it functions well for my purposes.
+ 
 Visualizing the Occurence of Certain Colors
-- The ten most often occuring hex values are then plotted to a pie chart, and displayed to the user. 
+- These ten colors are then charted onto a pie chart, with each color being given equal space. The pie chart functions as a color wheel rather than a mathematical chart - this is our final color palette:
 
-Often one color, such as #ffffff (white), will dominate an image. Other shades of this color may also occur disproportionately to those that make up the image's subject. It can be useful to know if certain hex value should be filtered out of an image, or another made to stand out in relation to it, when manipulating an image with other software.      
-
-![alt text](https://imgur.com/yb5s7SK)
-
-### CODE LOUISVILLE NOTE
-
-In my project plan, I set out to create a program that generates a color palette from the colors present in an image. Palette visualizes the colors which are most common in an image, but this does not result in a true color palette. This data is still useful however in certain photo editing scenarios.
-
+![alt text](https://i.imgur.com/hrVCxEi.png)
