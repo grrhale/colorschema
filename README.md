@@ -25,6 +25,8 @@ These libraries can be installed by running the following commands:
 
 * pip3 install matplotlib
 
+These requirements are also listed in requirements.txt, which is prepared should you want to run this program in a virtual environment.
+
 ## Primary Features:
 
 Reading Image Color Data
