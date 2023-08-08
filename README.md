@@ -2,7 +2,7 @@
 
 Palette breaks down the colors that comprise a digital image and provides a visualization of the colors that appear in that image most often. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing software such as Photoshop. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are converted to hexadecimal, and the ten most commonly occuring colors are graphed in a pie chart.
 
-A sample image file 'lily.jpg' is included in this github repository. When runnin palette, you will be prompted for a filepath. You may provide a filepath to any image file on your machine (.jpg, .png, etc.) 
+A sample image file 'lily.jpg' is included in this github repository. When running palette, you will be prompted for a filepath. You may provide a filepath to any image file on your machine (.jpg, .png, etc.) 
 
 An example use case is as follows:
 
