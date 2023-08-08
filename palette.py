@@ -21,7 +21,7 @@ if file_exists:
 	df_rgb = pd.DataFrame(clr_m.extract_rgb(pic))
 	
 	"""
-	Manipulating/cleaning the data
+	Cleaning the data
 	"""
 	# Create dataframe df_hex from df_rgb, adding hex value column to 
 	# df_rgb. This is converted from r,g,b columns using a lambda and  
@@ -35,28 +35,31 @@ if file_exists:
 	# Create srs_hex_byoccur series: hexes are ordered from those 
 	# occurring most often to least often in the image. RGB values are
 	# removed to make working with this series easier.
-	srs_hex_byoccur = df_hex.drop(['R', 'G', 'B'], axis=1).value_counts(
+	series_hex_byoccur = df_hex.drop(['R', 'G', 'B'], axis=1).value_counts(
 	ascending=False)
+	
+	df_10color_sample = np.array_split(series_hex_byoccur, 10) # split the hex color data series into 10 equal parts
+	df_sampled = pd.DataFrame(columns=['hex', 'occurrences']) # define a dataframe to be populated with the color data
+	occurrence_list = [] # define lists to fill that dataframe
+	hex_list_sampled = []
+	
+	for i in range(0, 10): # populate lists with sampled color hex codes and # of times they occur in the image
+		hex_list_sampled.append(df_10color_sample[i].index[0]) # ten hex codes that compose the palette
+		occurrence_list.append(df_10color_sample[i][0]) # number of times each hex code occurs
+
+	df_palette = pd.DataFrame(hex_list_sampled, columns=['hex']) # create palette dataframe (10 color palette, with occurrence count) 
+	df_palette['occurrences'] = occurrence_list
 	
 	"""
 	Visualizing the data
 	"""
 	# Create pie chart of a color palette
 	
-	df_10color_sample = np.array_split(srs_hex_byoccur, 10) # split the hex series into 10 equal parts
-	df_sampled = pd.DataFrame({'hex': df_10color_sample[0].index[0]}) # define a dataframe to be populated with our palette
-	for i in range(1, 10): # populate the dataframe
-		df_sampled.loc[i] = df_10color_sample[i].index[0] # populating with first color in each equal part
-		
-	false_y=[5,5,5,5,5,5,5,5,5,5] # create false y axis to append to dataframe (to allow matplotlib to plot the palette as a pie chart)
-	df_sampled['false_y']=false_y # append the false y data to the sampled dataframe
+	df_palette=df_palette.set_index('hex')
+	colors=df_palette.index.tolist() # Define colors for matplotlib, flattening df to list
+	df_palette['false_y_axis']=1 # append a false y axis to the dataframe, matplotlib will make a colorwheel inst of a typical pie chart
 	
-	df_sampled=df_sampled.set_index('hex') # set hex codes as index of the sampled dataframe
-
-	
-	colors=df_sampled.index.tolist() # Define colors, flattening df to list
-	
-	df_sampled.plot(kind='pie', y='false_y', colors=colors, legend=None) # plot the palette as an arbitrarily sized pie chart
+	df_palette.plot(kind='pie', y='false_y_axis', colors=colors, legend=None) # plot the palette as an arbitrarily sized pie chart
 	title_piechart='Palette from colors in ' + filepath # define the title for the palette chart
 	plt.ylabel(None) # disable labeling of the ys, false data
 	plt.title(label=title_piechart) # tell matplotlib to use our defined title
