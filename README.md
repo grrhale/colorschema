@@ -1,6 +1,8 @@
 # Palette
 
-Palette breaks down the colors that comprise a digital image and provides a visualization of the colors that appear in that image most often. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing software such as Photoshop. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are converted to hexadecimal, and the ten most commonly occuring colors are graphed in a pie chart.
+Palette breaks down the colors that comprise a digital image and generates a color palette based on those colors. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing and graphic design contexts. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are quantized, and the quantized data is converted to hexadecimal. These colors are then ordered by occurrence and sampled to generate a color palette.
+
+## How to run:
 
 A sample image file 'lily.jpg' is included in this github repository. When running palette, you will be prompted for a filepath. You may provide a filepath to any image file on your machine (.jpg, .png, etc.) 
 
@@ -9,8 +11,8 @@ An example use case is as follows:
 1) Open your terminal/CMD
 2) Navigate to the directory palette.py and associated files are located in.
 3) Type 'python3 palette.py'
-4) You will be prompted to provide a filepath, ie: 'C:\Users\user\git\palette-main\lily.jpg. Simply type 'lily.jpg' if you run palette in the same folder you pull from here, as it is included as a sample image. It contains a surprising amount of white and shades of white.
-5) Wait a moment as the image is analyzed. A pie chart will be displayed that shows which hexadecimal colors appear most often, in relation to each other.
+4) You will be prompted to provide a filepath, ie: 'C:\Users\user\git\palette-main\lily.jpg. Simply type 'lily.jpg' if you run palette in the same folder you pull from here, as it is included as a sample image.
+5) Wait a moment as the image is analyzed. A new window will open with a color palette in the form of a color wheel.
  
 ## Requirements:
 
