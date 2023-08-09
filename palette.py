@@ -11,18 +11,23 @@ file_exists = os.path.exists(filepath)
 
 if file_exists:
 	"""
-	Reading data in
+	Reading data (image) in
 	"""
 	# Read user image into ndarray with cv2.
 	pic = cv2.imread(filepath)
 	
-	# Create dataframe of the rgb values of every pixel in the image
-	# using extract_rgb from color_module.
-	df_rgb = pd.DataFrame(clr_m.extract_rgb(pic))
-	
 	"""
 	Cleaning the data
 	"""
+	# Quantize the image, reducing the number of colors for a more
+	# aesthetically useful palette
+	qpic = clr_m.quantizer(pic)
+	#print_quantization = cv2.imwrite('quantizing.jpg', quantized)
+	
+	# Create dataframe of the rgb values of every pixel in the image
+	# using extract_rgb from color_module.
+	df_rgb = pd.DataFrame(clr_m.extract_rgb(qpic))
+	
 	# Create dataframe df_hex from df_rgb, adding hex value column to 
 	# df_rgb. This is converted from r,g,b columns using a lambda and  
 	# rgb2hex from color_module.
@@ -38,21 +43,27 @@ if file_exists:
 	series_hex_byoccur = df_hex.drop(['R', 'G', 'B'], axis=1).value_counts(
 	ascending=False)
 	
-	df_10color_sample = np.array_split(series_hex_byoccur, 10) # split the hex color data series into 10 equal parts
+	df_10color_sample = np.array_split(series_hex_byoccur, 12) # split the hex color data series into 10 equal parts
 	df_sampled = pd.DataFrame(columns=['hex', 'occurrences']) # define a dataframe to be populated with the color data
-	occurrence_list = [] # define lists to fill that dataframe
+	# define lists to fill that dataframe
+	occurrence_list = []
 	hex_list_sampled = []
 	
-	for i in range(0, 10): # populate lists with sampled color hex codes and # of times they occur in the image
-		hex_list_sampled.append(df_10color_sample[i].index[0]) # ten hex codes that compose the palette
-		occurrence_list.append(df_10color_sample[i][0]) # number of times each hex code occurs
-
-	df_palette = pd.DataFrame(hex_list_sampled, columns=['hex']) # create palette dataframe (10 color palette, with occurrence count) 
+	
+	# populate lists with sampled color hex codes and # of times they occur in the image
+	for i in range(0, 12): 
+		hex_list_sampled.append(df_10color_sample[i].index[0]) # the ten hex codes that compose the palette
+		occurrence_list.append(df_10color_sample[i][0]) # the number of times each hex code occurs
+	
+	# create palette dataframe (10 color palette, with occurrence count)
+	df_palette = pd.DataFrame(hex_list_sampled, columns=['hex'])  
 	df_palette['occurrences'] = occurrence_list
 	
 	"""
-	Visualizing the data
+	Color data visualization options
 	"""
+	#
+	# CLI output
 	# Create pie chart of a color palette
 	
 	df_palette=df_palette.set_index('hex')

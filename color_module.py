@@ -27,3 +27,8 @@ rgb2hex() converts rgb values to hexadecimal values, given RGB input
 """
 def rgb2hex(red, green, blue):
 	return '#%02x%02x%02x' % (red, green, blue)
+	
+def quantizer(cv2image_as_input):
+	div = 64
+	cv2image_quantized = cv2image_as_input // div * div + div // 2
+	return cv2image_quantized
