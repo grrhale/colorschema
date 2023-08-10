@@ -4,11 +4,22 @@ import os.path
 import pandas as pd
 import numpy as np
 import color_module as clr_m
+import argparse
 
-# ask user for file
-filepath = input(f"Please provide the filepath of an image to analyze: ")
+# parser configuration
+parser = argparse.ArgumentParser()
+parser.add_argument('-cw', '--colorwheel', 
+	help='present color palette as colorwheel/graph',
+	action="store_true")
+parser.add_argument('filepath', 
+	help='the filepath of an image from which to generate a palette',)
+args = parser.parse_args()
+
+# assign filepath to var for operation
+filepath = args.filepath
 file_exists = os.path.exists(filepath)
 
+# if file exists, operate, otherwise, tell the user and close
 if file_exists:
 	"""
 	Reading data (image) in
@@ -75,16 +86,16 @@ if file_exists:
 	"""
 	Color data visualization options
 	"""
-	
-	# cli output
+	# cli output (default, constant output)
 	print(', '.join(colors))
 	
-	# create pie chart of a color palette (colorwheel)
-	df_palette.plot(kind='pie', y='false_y_axis', colors=colors, legend=None) # plot the palette as an arbitrarily sized pie chart
-	title_piechart='Palette from colors in ' + filepath # define the title for the palette chart
-	plt.ylabel(None) # disable labeling of the ys, false data
-	plt.title(label=title_piechart) # tell matplotlib to use our defined title
-	plt.show() # plot the palette
+	# create pie chart of a color palette (colorwheel) if -cw is passed
+	if args.colorwheel:
+		df_palette.plot(kind='pie', y='false_y_axis', colors=colors, legend=None) # plot the palette as an arbitrarily sized pie chart
+		title_piechart='Palette from colors in ' + filepath # define the title for the palette chart
+		plt.ylabel(None) # disable labeling of the ys, false data
+		plt.title(label=title_piechart) # tell matplotlib to use our defined title
+		plt.show() # plot the palette
 
 
 # if the image filepath provided didn't point to an image, end with msg	
