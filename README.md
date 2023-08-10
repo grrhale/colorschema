@@ -1,6 +1,6 @@
-# Palette
+# spalette
 
-Palette breaks down the colors that comprise a digital image and generates a color palette based on those colors. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing and graphic design contexts. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are quantized, and the quantized data is converted to hexadecimal. These colors are then ordered by occurrence and sampled to generate a color palette.
+spalette breaks down the colors that comprise a digital image and generates a color palette based on those colors. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are more commonly represented in hexadecimal form, eg '#121212'. Hex codes are regularly used in photo editing and graphic design contexts. When you provide palette with an image the program reads the RGB value of each pixel in that image. These values are quantized, and the quantized data is converted to hexadecimal. These colors are then ordered by occurrence and sampled to generate a color palette.
 
 ## How to run:
 
