@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/spalette/__init__.py
+src/spalette/__main__.py
+src/spalette/color_module.py
+src/spalette.egg-info/PKG-INFO
+src/spalette.egg-info/SOURCES.txt
+src/spalette.egg-info/dependency_links.txt
+src/spalette.egg-info/requires.txt
+src/spalette.egg-info/top_level.txt
