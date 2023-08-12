@@ -8,20 +8,14 @@ spalette is intended to be as simple as possible. The only requirement from the 
 
 ## Requirements/Installation:
 
-spalette is available for pip installation via PyPI. If installed via pip: 'pip install spalette' the requirements will be installed for you.
+spalette is available for pip installation via PyPI. If installed via pip: 'pip install spalette' the requirements should be installed for you.
 
 This program utilizes pandas for data manipulation, opencv to read image data,
 and matplotlib to generate a visual output. These need to be installed for the program to work.
 
-These libraries can be installed by running the following commands:
-
-* pip3 install pandas
-
-* pip3 install opencv-python
-
-* pip3 install matplotlib
-
-These requirements are also listed in requirements.txt, which is prepared should you want to run this program in a virtual environment. 
+* pip install pandas
+* pip install opencv-python
+* pip install matplotlib
 
 ## Primary Features:
 
