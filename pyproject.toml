@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "spalette"
-version = "0.2.2"
+version = "0.1"
 description = "a simple color palette generator that takes an image file as input"
 authors = ["grrhale <raymond.hale0@gmail.com>"]
 license = "MIT"
