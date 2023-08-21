@@ -1,34 +1,46 @@
-# spalette
+# spalette - a simple command line color palette tool
 
-spalette breaks down the colors that comprise a digital image and generates a color palette based on those colors. Each pixel in a digital image is assigned a specific red, green, and blue value which, when combined, displays a particular color. These RGB values are commonly represented in hexadecimal form, eg '#121212' in photo editing and graphic design contexts. When you provide spalette with an image the program quantizes it to simplify the number of colors available while maintaining accuracy. Each pixel of the quantized image is read into RGB form, then converted to hexadecimal. These hex colors are then ordered by occurrence and sampled to generate a color palette.
+spalette analyzes the colors that comprise a digital image and generates a color palette from them. When you provide spalette with an image the program quantizes it, simplifying the number of colors available while maintaining true to the original colors. Each pixel of the quantized image is read in RGB format, then converted to hexadecimal format. These hex color codes are then ordered by occurrence and sampled (the ordered list is split into ten equal parts, and the most often occuring color in each part becomes one element of the color palette). This process results in a ten color palette drawn from the full range of colors present in the image.
 
-## How to run:
+## Requirements & Installation:
 
-spalette is intended to be as simple as possible. The only requirement from the user is a filepath. In a terminal or CLI, type 'spalette path/to/imagefile.jpg'. A color palette will be generated, and ten hex color codes will be returned in the terminal. For a visual representation of the palette in addition, pass flag '-cw' before or after the filepath like so: 'spalette -cw path/to/imagefile.jpg'. A new window will open with the ten palette colors plotted onto a color wheel, courtesy of matplotlib. 
+spalette version 0.1 is currently available for installation through the Python Package Index. You may install the program from the command line using the "pip" command line tool as follows: `pip install spalette`
 
-## Requirements/Installation:
+Using pip, the necessary python dependencies should be installed for you.
 
-spalette is available for pip installation via PyPI. If installed via pip: 'pip install spalette' the requirements should be installed for you.
+If you would prefer to install spalette from source, there are a few dependencies you will need to install prior to installation. spalette utilizes Pandas and NumPy for data manipulation, OpenCV to read image data,
+and Matplotlib to generate a visual output. These need to be installed for the program to work, and you can do that with the following command:
 
-This program utilizes pandas for data manipulation, opencv to read image data,
-and matplotlib to generate a visual output. These need to be installed for the program to work.
+`pip install pandas numpy opencv-python matplotlib`
 
-* pip install pandas
-* pip install opencv-python
-* pip install matplotlib
+## Usage:
 
-## Primary Features:
+On Mac and Linux, spalette should automatically be added to your $PATH and be ready to run as a command after installing with pip. On Windows, you may have to add Python programs to your $PATH manually for it to be available. You can find the steps to do that [here.](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) This will no longer be an issue in the next release.
 
-Reading Image Color Data
-- Reads RGB values from digital image files into an array (ndarray).
+spalette is meant to be as simple as possible, requiring only one input: the filepath to an image. In a terminal or command prompt, type:
+ `spalette path/to/imagefile.jpg`  
 
-Cleaning and Manipulating Image Color Data
-- The read image file is quantized to simplify the color data available while maintaining accuracy to the colors present in the image. The program creates a pandas dataframe of this data by extracting it from an ndarray and putting it into R, G, and B columns. Each row of this dataframe contains one pixel's color values. This dataframe is then converted to hexadecimal. The hexadecimal is added as an additional column, preserving the R G B values, and creating a master dataframe of all useful color data pixel by pixel. 
+A color palette will be generated and the default output of ten hex color codes will appear on the CLI. This is your color palette, ready to be used as you see fit. For a visual representation of the palette in addition to the list, include `-cw` before or after the filepath like so:
+`spalette -cw path/to/imagefile.jpg`
 
-Sorting Image Data by Occurence
-- This dataframe is then sorted into a pandas series, with the values that occur more often than others at the top and the values that occur least often at the bottom. This sort is then broken up into 10 equally sized sections for sampling. From these sections, the most often occuring color in each is selected and included in the palette.
+ A new window will open with the ten palette colors plotted onto a color wheel. You may save this wheel as a reference, or simply close it if you are done. 
+
+## Detailed feature list and technical information:
+
+#### Reads image color data:
+- Reads RGB values from provided image files into an array (ndarray - numpy dependency).
+
+#### Cleans and manipulates this color data to create an output:
+- The image file is quantized to simplify the color data available while staying true to the colors present in the image. The program creates a pandas dataframe of this data by extracting it from the ndarray and putting it into R, G, and B columns. Each row of this dataframe contains one pixel's color values. This dataframe is then converted to hexadecimal which is added as an additional column, preserving the R G B values and creating a master dataframe of all useful color data pixel by pixel. 
+
+- This dataframe is then sorted into a pandas series, with the values that occur more often than others at the top and the values that occur least often at the bottom. This sort is then broken up into 10 equally sized sections (using NumPy's array_split function) for sampling. From these sections, the most often occurring color in each is selected and included in the palette.
  
-Visualizing the Occurence of Certain Colors
-- These ten colors are always output to the terminal for you to use as you see fit. They may also be visualized as a color wheel (matplotlib pie chart with each color being given equal space) if so desired by passing the -cw flagat runtime.
+#### Visualizes the generated color palette:
+- These ten colors are always output to the terminal for you to use as you see fit. They may also be visualized as a color wheel (matplotlib pie chart with each color being given equal space) if so desired by passing '-cw' when running:
 
 ![alt text](https://i.imgur.com/hrVCxEi.png)
+## Features planned for version 0.2:
+- the ability for the user to choose how many colors comprise the palette
+- multiple quantization options, allowing for better palette generation from overly light or dark images
+- the ability to automatically output the palette to a file without interacting with the matplotlib GUI
+- a secondary visualization option
